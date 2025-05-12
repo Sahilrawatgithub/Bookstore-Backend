@@ -17,21 +17,21 @@ namespace BusinessLayer.Service
         {
             _wishlistRL = wishlistRL;
         }
-        public async Task<ResponseDTO<string>> WishlistBook(int bookId, int userId)
+        public async Task<ResponseDTO<string>> WishlistBookAsync(int bookId, int userId)
         {
-            return await _wishlistRL.WishlistBook(bookId, userId);
+            return await _wishlistRL.WishlistBookAsync(bookId, userId);
         }
-        public async Task<ResponseDTO<List<WishListEntity>>> GetAllWishlistedBooks(int userId)
+        public async Task<ResponseDTO<List<WishListEntity>>> GetAllWishlistedBooksAsync(int userId)
         {
-            return await _wishlistRL.GetAllWishlistedBooks(userId);
+            return await _wishlistRL.GetAllWishlistedBooksAsync(userId);
         }
-        public async Task<ResponseDTO<string>> RemoveBookFromWishlist(int bookId, int userId)
+        public async Task<ResponseDTO<string>> RemoveBookFromWishlistAsync(int bookId, int userId)
         {
-            return await _wishlistRL.RemoveBookFromWishlist(bookId, userId);
+            return await _wishlistRL.RemoveBookFromWishlistAsync(bookId, userId);
         }
-        public async Task<ResponseDTO<string>> ClearWishlist(int userId)
+        public async Task<ResponseDTO<string>> ClearWishlistAsync(int userId)
         {
-            return await _wishlistRL.ClearWishlist(userId);
+            return await _wishlistRL.ClearWishlistAsync(userId);
         }
 
     }

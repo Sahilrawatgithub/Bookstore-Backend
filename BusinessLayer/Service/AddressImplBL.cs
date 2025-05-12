@@ -17,44 +17,44 @@ namespace BusinessLayer.Service
         {
             _addressRL = addressRL;
         }
-        public async Task<ResponseDTO<string>> AddAddress(UserAddressReqDTO request, int userId)
+        public async Task<ResponseDTO<string>> AddAddressAsync(UserAddressReqDTO request, int userId)
         {
             try
             {
-                return await _addressRL.AddAddress(request, userId);
+                return await _addressRL.AddAddressAsync(request, userId);
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<ResponseDTO<string>> UpdateAddress(UserAddressReqDTO request,int adressId, int userId)
+        public async Task<ResponseDTO<string>> UpdateAddressAsync(UserAddressReqDTO request,int adressId, int userId)
         {
             try
             {
-                return await _addressRL.UpdateAddress(request,adressId, userId);
+                return await _addressRL.UpdateAddressAsync(request,adressId, userId);
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<ResponseDTO<string>> DeleteAddress(int addressId, int userId)
+        public async Task<ResponseDTO<string>> DeleteAddressAsync(int addressId, int userId)
         {
             try
             {
-                return await _addressRL.DeleteAddress(addressId, userId);
+                return await _addressRL.DeleteAddressAsync(addressId, userId);
             }
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
             }
         }
-        public async Task<ResponseDTO<List<AddressEntity>>> GetAllAddresses(int userId)
+        public async Task<ResponseDTO<List<AddressEntity>>> GetAllAddressesAsync(int userId)
         {
             try
             {
-                return await _addressRL.GetAllAddresses(userId);
+                return await _addressRL.GetAllAddressesAsync(userId);
             }
             catch (Exception ex)
             {

@@ -17,17 +17,17 @@ namespace BusinessLayer.Service
         {
             _bookRL = bookRl;
         }
-        public async Task<ResponseDTO<string>> UploadBook(AddBookReqDTO request,int userId)
+        public async Task<ResponseDTO<string>> UploadBookAsync(AddBookReqDTO request,int userId)
         {
-            return await _bookRL.UploadBook(request,userId);
+            return await _bookRL.UploadBookAsync(request,userId);
         }
-        public async Task<ResponseDTO<BookEntity>> ViewBookById(int bookId)
+        public async Task<ResponseDTO<BookEntity>> ViewBookByIdAsync(int bookId)
         {
-            return await _bookRL.ViewBookById(bookId);
+            return await _bookRL.ViewBookByIdAsync(bookId);
         }
-        public async Task<ResponseDTO<List<BookEntity>>> GetAllBooks()
+        public async Task<ResponseDTO<List<BookEntity>>> GetAllBooksAsync()
         {
-            return await _bookRL.GetAllBooks();
+            return await _bookRL.GetAllBooksAsync();
         }
     }
 }

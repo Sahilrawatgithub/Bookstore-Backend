@@ -10,9 +10,9 @@ namespace RepositoryLayer.Interface
 {
     public interface IAddressRL
     {
-        public Task<ResponseDTO<string>> AddAddress(UserAddressReqDTO request, int userId);
-        public Task<ResponseDTO<string>> UpdateAddress(UserAddressReqDTO request,int adressId, int userId);
-        public Task<ResponseDTO<string>> DeleteAddress(int addressId, int userId);
-        public Task<ResponseDTO<List<AddressEntity>>> GetAllAddresses(int userId);
+        public Task<ResponseDTO<string>> AddAddressAsync(UserAddressReqDTO request, int userId);
+        public Task<ResponseDTO<string>> UpdateAddressAsync(UserAddressReqDTO request,int adressId, int userId);
+        public Task<ResponseDTO<string>> DeleteAddressAsync(int addressId, int userId);
+        public Task<ResponseDTO<List<AddressEntity>>> GetAllAddressesAsync(int userId);
     }
 }

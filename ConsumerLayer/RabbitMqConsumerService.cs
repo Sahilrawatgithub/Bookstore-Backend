@@ -59,6 +59,13 @@ namespace ConsumerLayer
                 }
             };
 
+            _channel.QueueDeclare(
+                        queue: "EmailQueue",
+                        durable: true,
+                        exclusive: false,
+                        autoDelete: false,
+                        arguments: null
+                        );
             _channel.BasicConsume(queue: "EmailQueue", autoAck: true, consumer: consumer);
 
             // Keep service alive until stoppingToken is triggered

@@ -18,16 +18,16 @@ namespace BusinessLayer.Service
             this.orderRL = orderRL;
         }
 
-        public async Task<ResponseDTO<List<OrderEntity>>> GetAllOrders(int userId)
+        public async Task<ResponseDTO<List<OrderEntity>>> GetAllOrdersAsync(int userId)
         {
-            return await orderRL.GetAllOrders(userId);
+            return await orderRL.GetAllOrdersAsync(userId);
         }
 
-        public async Task<ResponseDTO<string>> OrderBook(OrderDTO order, int userId)
+        public async Task<ResponseDTO<string>> OrderBookAsync(OrderDTO order, int userId)
         {
             try
             {
-                return await orderRL.OrderBook(order, userId);
+                return await orderRL.OrderBookAsync(order, userId);
             }
             catch (Exception ex)
             {

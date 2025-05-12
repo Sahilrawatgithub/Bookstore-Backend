@@ -132,5 +132,28 @@ namespace BookStore.Controllers
                 });
             }
         }
+        [Authorize]
+        [HttpPut("ResetPassword")]
+        public async Task<IActionResult> ResetPasswordAsync(string email, string newPassword)
+        {
+            try
+            {
+                var result = await userBL.ResetPasswordAsync(email, newPassword);
+                if (result.Success)
+                {
+                    return Ok(result);
+                }
+                return BadRequest(result);
+            }
+            catch (Exception ex)
+            {
+                return StatusCode(500, new ResponseDTO<string>
+                {
+                    Success = false,
+                    Message = ex.Message,
+                    Data = null
+                });
+            }
+        }
     }
 }

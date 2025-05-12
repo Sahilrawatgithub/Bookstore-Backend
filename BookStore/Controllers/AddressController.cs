@@ -23,7 +23,7 @@ namespace BookStore.Controllers
             try
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
-                var result = await _addressBL.AddAddress(request, userId);
+                var result = await _addressBL.AddAddressAsync(request, userId);
                 if (result.Success == true)
                 {
                     return Ok(result);
@@ -45,7 +45,7 @@ namespace BookStore.Controllers
             try
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
-                var result = await _addressBL.UpdateAddress(request, addressId, userId);
+                var result = await _addressBL.UpdateAddressAsync(request, addressId, userId);
                 if (result.Success == true)
                 {
                     return Ok(result);
@@ -67,7 +67,7 @@ namespace BookStore.Controllers
             try
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
-                var result = await _addressBL.DeleteAddress(addressId, userId);
+                var result = await _addressBL.DeleteAddressAsync(addressId, userId);
                 if (result.Success == true)
                 {
                     return Ok(result);
@@ -89,7 +89,7 @@ namespace BookStore.Controllers
             try
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
-                var result = await _addressBL.GetAllAddresses(userId);
+                var result = await _addressBL.GetAllAddressesAsync(userId);
                 if (result.Success == true)
                 {
                     return Ok(result);

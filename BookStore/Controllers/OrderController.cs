@@ -21,7 +21,7 @@ namespace BookStore.Controllers
             try
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
-                var result = await _orderBL.OrderBook(order, userId);
+                var result = await _orderBL.OrderBookAsync(order, userId);
                 if (result.Success == true)
                 {
                     return Ok(result);
@@ -42,7 +42,7 @@ namespace BookStore.Controllers
             try
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
-                var result = await _orderBL.GetAllOrders(userId);
+                var result = await _orderBL.GetAllOrdersAsync(userId);
                 if (result.Success == true)
                 {
                     return Ok(result);

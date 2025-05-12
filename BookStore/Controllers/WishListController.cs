@@ -19,7 +19,7 @@ namespace BookStore.Controllers
             try
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
-                var result = await _wishlistBL.WishlistBook(bookId, userId);
+                var result = await _wishlistBL.WishlistBookAsync(bookId, userId);
                 if (result.Success == true)
                 {
                     return Ok(result);
@@ -40,7 +40,7 @@ namespace BookStore.Controllers
             try
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
-                var result = await _wishlistBL.GetAllWishlistedBooks(userId);
+                var result = await _wishlistBL.GetAllWishlistedBooksAsync(userId);
                 if (result.Success == true)
                 {
                     return Ok(result);
@@ -61,7 +61,7 @@ namespace BookStore.Controllers
             try
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
-                var result = await _wishlistBL.RemoveBookFromWishlist(bookId, userId);
+                var result = await _wishlistBL.RemoveBookFromWishlistAsync(bookId, userId);
                 if (result.Success == true)
                 {
                     return Ok(result);
@@ -82,7 +82,7 @@ namespace BookStore.Controllers
             try
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
-                var result = await _wishlistBL.ClearWishlist(userId);
+                var result = await _wishlistBL.ClearWishlistAsync(userId);
                 if (result.Success == true)
                 {
                     return Ok(result);

@@ -26,7 +26,7 @@ namespace RepositoryLayer.Service
             _redisDatabase = connectionMultiplexer.GetDatabase();
         }
 
-        public async Task<ResponseDTO<string>> WishlistBook(int bookId, int userId)
+        public async Task<ResponseDTO<string>> WishlistBookAsync(int bookId, int userId)
         {
             try
             {
@@ -83,7 +83,7 @@ namespace RepositoryLayer.Service
             }
         }
 
-        public async Task<ResponseDTO<List<WishListEntity>>> GetAllWishlistedBooks(int userId)
+        public async Task<ResponseDTO<List<WishListEntity>>> GetAllWishlistedBooksAsync(int userId)
         {
             try
             {
@@ -131,7 +131,7 @@ namespace RepositoryLayer.Service
                 };
             }
         }
-        public async Task<ResponseDTO<string>> RemoveBookFromWishlist(int bookId, int userId)
+        public async Task<ResponseDTO<string>> RemoveBookFromWishlistAsync(int bookId, int userId)
         {
             try
             {
@@ -164,7 +164,7 @@ namespace RepositoryLayer.Service
                 };
             }
         }
-        public async Task<ResponseDTO<string>> ClearWishlist(int userId)
+        public async Task<ResponseDTO<string>> ClearWishlistAsync(int userId)
         {
             try
             {

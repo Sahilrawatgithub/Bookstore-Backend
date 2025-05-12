@@ -10,8 +10,8 @@ namespace BusinessLayer.Interface
 {
     public interface IOrderBL
     {
-        public Task<ResponseDTO<string>> OrderBook(OrderDTO order, int userId);
-        public Task<ResponseDTO<List<OrderEntity>>> GetAllOrders(int userId);
+        public Task<ResponseDTO<string>> OrderBookAsync(OrderDTO order, int userId);
+        public Task<ResponseDTO<List<OrderEntity>>> GetAllOrdersAsync(int userId);
 
     }
 }

@@ -10,10 +10,10 @@ namespace BusinessLayer.Interface
 {
     public interface IWishlistBL
     {
-        public Task<ResponseDTO<string>> WishlistBook(int bookId, int userId);
-        public Task<ResponseDTO<List<WishListEntity>>> GetAllWishlistedBooks(int userId);
-        public Task<ResponseDTO<string>> RemoveBookFromWishlist(int bookId, int userId);
-        public Task<ResponseDTO<string>> ClearWishlist(int userId);
+        public Task<ResponseDTO<string>> WishlistBookAsync(int bookId, int userId);
+        public Task<ResponseDTO<List<WishListEntity>>> GetAllWishlistedBooksAsync(int userId);
+        public Task<ResponseDTO<string>> RemoveBookFromWishlistAsync(int bookId, int userId);
+        public Task<ResponseDTO<string>> ClearWishlistAsync(int userId);
 
     }
 }

@@ -26,7 +26,7 @@ namespace RepositoryLayer.Service
             _logger = logger;
         }
 
-        public async Task<ResponseDTO<string>> OrderBook(OrderDTO order, int userId)
+        public async Task<ResponseDTO<string>> OrderBookAsync(OrderDTO order, int userId)
         {
             try
             {
@@ -90,7 +90,7 @@ namespace RepositoryLayer.Service
                 };
             }
         }
-        public async Task<ResponseDTO<List<OrderEntity>>> GetAllOrders(int userId)
+        public async Task<ResponseDTO<List<OrderEntity>>> GetAllOrdersAsync(int userId)
         {   
             try
             {

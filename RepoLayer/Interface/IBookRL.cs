@@ -10,9 +10,9 @@ namespace RepositoryLayer.Interface
 {
     public interface IBookRL
     {
-        public Task<ResponseDTO<string>> UploadBook(AddBookReqDTO request,int userId);
-        public Task<ResponseDTO<BookEntity>> ViewBookById(int bookId);
-        public Task<ResponseDTO<List<BookEntity>>> GetAllBooks();
+        public Task<ResponseDTO<string>> UploadBookAsync(AddBookReqDTO request,int userId);
+        public Task<ResponseDTO<BookEntity>> ViewBookByIdAsync(int bookId);
+        public Task<ResponseDTO<List<BookEntity>>> GetAllBooksAsync();
 
     }
 }

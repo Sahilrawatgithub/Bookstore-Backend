@@ -16,11 +16,11 @@ namespace BusinessLayer.Service
         {
             this.cartRL = cartRL;
         }
-        public async Task<ResponseDTO<string>> AddToCart(AddToCartReqDTO addToCartReq, int userId)
+        public async Task<ResponseDTO<string>> AddToCartAsync(AddToCartReqDTO addToCartReq, int userId)
         {
             try
             {
-                return await cartRL.AddToCart(addToCartReq, userId);
+                return await cartRL.AddToCartAsync(addToCartReq, userId);
             }
             catch (Exception ex)
             {
@@ -31,11 +31,11 @@ namespace BusinessLayer.Service
                 };
             }
         }
-        public async Task<ResponseDTO<string>> RemoveFromCart(int cartId, int userId)
+        public async Task<ResponseDTO<string>> RemoveFromCartAsync(int cartId, int userId)
         {
             try
             {
-                return await cartRL.RemoveFromCart(cartId, userId);
+                return await cartRL.RemoveFromCartAsync(cartId, userId);
             }
             catch (Exception ex)
             {
@@ -46,11 +46,11 @@ namespace BusinessLayer.Service
                 }; 
             }
         }
-        public async Task<ResponseDTO<List<CartResponseDTO>>> GetAllCartItems(int userId)
+        public async Task<ResponseDTO<List<CartResponseDTO>>> GetAllCartItemsAsync(int userId)
         {
             try
             {
-                return await cartRL.GetAllCartItems(userId);
+                return await cartRL.GetAllCartItemsAsync(userId);
             }
             catch (Exception ex)
             {
@@ -61,22 +61,22 @@ namespace BusinessLayer.Service
                 };
             }
         }
-        public async Task<ResponseDTO<string>> UpdateCart(int cartId, int quantity, int userId)
+        public async Task<ResponseDTO<string>> UpdateCartAsync(int cartId, int quantity, int userId)
         {
             try
             {
-                return await cartRL.UpdateCart(cartId, quantity, userId);
+                return await cartRL.UpdateCartAsync(cartId, quantity, userId);
             }
             catch (Exception ex)
             {
                 return new ResponseDTO<string> { Success = false, Message = ex.Message };
             }
         }
-        public async Task<ResponseDTO<string>> ClearCart(int userId)
+        public async Task<ResponseDTO<string>> ClearCartAsync(int userId)
         {
             try
             {
-                return await cartRL.ClearCart(userId);
+                return await cartRL.ClearCartAsync(userId);
             }
             catch (Exception ex)
             {
@@ -87,6 +87,5 @@ namespace BusinessLayer.Service
                 };
             }
         }
-
     }
 }

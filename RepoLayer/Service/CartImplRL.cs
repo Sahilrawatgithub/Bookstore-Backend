@@ -27,7 +27,7 @@ namespace RepositoryLayer.Service
             _redisDatabase = connectionMultiplexer.GetDatabase();
         }
 
-        public async Task<ResponseDTO<string>> AddToCart(AddToCartReqDTO addToCartReqDTO,int userId)
+        public async Task<ResponseDTO<string>> AddToCartAsync(AddToCartReqDTO addToCartReqDTO,int userId)
         {
             try
             {
@@ -87,7 +87,7 @@ namespace RepositoryLayer.Service
             }
         }
 
-        public async Task<ResponseDTO<string>> ClearCart(int userId)
+        public async Task<ResponseDTO<string>> ClearCartAsync(int userId)
         {
             try
             {
@@ -121,7 +121,7 @@ namespace RepositoryLayer.Service
             }
         }
 
-        public async Task<ResponseDTO<string>> RemoveFromCart(int cartId, int userId)
+        public async Task<ResponseDTO<string>> RemoveFromCartAsync(int cartId, int userId)
         {
             try
             {
@@ -155,7 +155,7 @@ namespace RepositoryLayer.Service
             }
         }
 
-        public async Task<ResponseDTO<string>> UpdateCart(int cartId, int quantity, int userId)
+        public async Task<ResponseDTO<string>> UpdateCartAsync(int cartId, int quantity, int userId)
         {
             try
             {
@@ -189,7 +189,7 @@ namespace RepositoryLayer.Service
             }
         }
 
-        public async Task<ResponseDTO<List<CartResponseDTO>>> GetAllCartItems(int userId)
+        public async Task<ResponseDTO<List<CartResponseDTO>>> GetAllCartItemsAsync(int userId)
         {
             try
             {

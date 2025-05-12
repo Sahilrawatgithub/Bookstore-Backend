@@ -28,7 +28,7 @@ namespace RepositoryLayer.Service
             _logger = logger;
         }
 
-        public async Task<ResponseDTO<string>> UploadBook(AddBookReqDTO request,int userId)
+        public async Task<ResponseDTO<string>> UploadBookAsync(AddBookReqDTO request,int userId)
         {
             try
             {
@@ -82,7 +82,7 @@ namespace RepositoryLayer.Service
             }
         }
 
-        public async Task<ResponseDTO<BookEntity>> ViewBookById(int bookId)
+        public async Task<ResponseDTO<BookEntity>> ViewBookByIdAsync(int bookId)
         {
             try
             {
@@ -135,7 +135,7 @@ namespace RepositoryLayer.Service
             }
         }
 
-        public async Task<ResponseDTO<List<BookEntity>>> GetAllBooks()
+        public async Task<ResponseDTO<List<BookEntity>>> GetAllBooksAsync()
         {
             try
             {
@@ -163,7 +163,6 @@ namespace RepositoryLayer.Service
                 else
                 {
                     var books = await _userContext.Books.ToListAsync();
-                    await CacheAllBooks();
                     if (books.Count == 0)
                     {
                         return new ResponseDTO<List<BookEntity>>

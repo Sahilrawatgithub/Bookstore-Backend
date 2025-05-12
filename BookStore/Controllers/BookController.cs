@@ -23,7 +23,7 @@ namespace BookStore.Controllers
             try
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
-                var result = await _bookBL.UploadBook(request,userId);
+                var result = await _bookBL.UploadBookAsync(request,userId);
                 if (result.Success == true)
                 {
                     return Ok(result);
@@ -45,7 +45,7 @@ namespace BookStore.Controllers
         {
             try
             {
-                var result = await _bookBL.ViewBookById(bookId);
+                var result = await _bookBL.ViewBookByIdAsync(bookId);
                 if (result.Success == true)
                 {
                     return Ok(result);
@@ -66,7 +66,7 @@ namespace BookStore.Controllers
         {
             try
             {
-                var result = await _bookBL.GetAllBooks();
+                var result = await _bookBL.GetAllBooksAsync();
                 if (result.Success == true)
                 {
                     return Ok(result);

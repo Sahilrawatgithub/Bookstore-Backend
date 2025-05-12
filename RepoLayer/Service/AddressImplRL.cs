@@ -31,7 +31,7 @@ namespace RepositoryLayer.Service
             _redisDatabase = redis.GetDatabase();
         }
 
-        public async Task<ResponseDTO<string>> AddAddress(UserAddressReqDTO request, int userId)
+        public async Task<ResponseDTO<string>> AddAddressAsync(UserAddressReqDTO request, int userId)
         {
             try
             {
@@ -76,7 +76,7 @@ namespace RepositoryLayer.Service
             }
             
         }
-        public async Task<ResponseDTO<string>> UpdateAddress(UserAddressReqDTO request,int addressId, int userId)
+        public async Task<ResponseDTO<string>> UpdateAddressAsync(UserAddressReqDTO request,int addressId, int userId)
         {
             try
             {
@@ -115,7 +115,7 @@ namespace RepositoryLayer.Service
                 };
             }
         }
-        public async Task<ResponseDTO<List<AddressEntity>>> GetAllAddresses(int userId)
+        public async Task<ResponseDTO<List<AddressEntity>>> GetAllAddressesAsync(int userId)
         {
             try
             {
@@ -153,7 +153,7 @@ namespace RepositoryLayer.Service
                 };
             }
         }
-        public async Task<ResponseDTO<string>> DeleteAddress(int addressId, int userId)
+        public async Task<ResponseDTO<string>> DeleteAddressAsync(int addressId, int userId)
         {
             try
             {

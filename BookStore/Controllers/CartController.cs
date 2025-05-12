@@ -23,7 +23,7 @@ namespace BookStore.Controllers
             try
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
-                var result = await cartBL.AddToCart(addToCartReqDTO, userId);
+                var result = await cartBL.AddToCartAsync(addToCartReqDTO, userId);
                 if (result.Success)
                 {
                     return Ok(result);
@@ -42,7 +42,7 @@ namespace BookStore.Controllers
         {
             try
             {
-                var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value); var result = await cartBL.RemoveFromCart(cartId, userId);
+                var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value); var result = await cartBL.RemoveFromCartAsync(cartId, userId);
                 if (result.Success)
                 {
                     return Ok(result);
@@ -63,7 +63,7 @@ namespace BookStore.Controllers
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
 
-                var result = await cartBL.GetAllCartItems(userId);
+                var result = await cartBL.GetAllCartItemsAsync(userId);
                 if (result.Success)
                 {
                     return Ok(result);
@@ -84,7 +84,7 @@ namespace BookStore.Controllers
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
 
-                var result = await cartBL.UpdateCart(cartId, quantity, userId);
+                var result = await cartBL.UpdateCartAsync(cartId, quantity, userId);
                 if (result.Success)
                 {
                     return Ok(result);
@@ -105,7 +105,7 @@ namespace BookStore.Controllers
             {
                 var userId = Convert.ToInt32(User.Claims.FirstOrDefault(x => x.Type == "Id")?.Value);
 
-                var result = await cartBL.ClearCart(userId);
+                var result = await cartBL.ClearCartAsync(userId);
                 if (result.Success)
                 {
                     return Ok(result);
