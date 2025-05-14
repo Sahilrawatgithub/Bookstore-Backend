@@ -1,0 +1,11 @@
+Y
+ND:\BridgeLabz\BookStore\ModelLayer\obj\Debug\net8.0\ModelLayer.AssemblyInfo.csutf-8m
+bD:\BridgeLabz\BookStore\ModelLayer\obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.csutf-8[
+PD:\BridgeLabz\BookStore\ModelLayer\obj\Debug\net8.0\ModelLayer.GlobalUsings.g.csutf-8@
+7D:\BridgeLabz\BookStore\ModelLayer\Enums\AddressType.csutf-8D
+;D:\BridgeLabz\BookStore\ModelLayer\Entity\WishListEntity.csutf-8@
+7D:\BridgeLabz\BookStore\ModelLayer\Entity\UserEntity.csutf-8A
+8D:\BridgeLabz\BookStore\ModelLayer\Entity\OrderEntity.csutf-8@
+7D:\BridgeLabz\BookStore\ModelLayer\Entity\CartEntity.csutf-8@
+7D:\BridgeLabz\BookStore\ModelLayer\Entity\BookEntity.csutf-8C
+:D:\BridgeLabz\BookStore\ModelLayer\Entity\AddressEntity.csutf-8

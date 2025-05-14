@@ -1,0 +1,3 @@
+﻿D:\BridgeLabz\BookStore\ConsumerLayer\DTO\EmailMessageDTO.cs
+D:\BridgeLabz\BookStore\ConsumerLayer\Helper\GmailTokenSender.cs
+D:\BridgeLabz\BookStore\ConsumerLayer\RabbitMqConsumerService.cs

@@ -1,0 +1,1 @@
+PR:D:\BridgeLabz\BookStore\BusinessLayer\BusinessLayer.csproj¢net8.0òCSharp12

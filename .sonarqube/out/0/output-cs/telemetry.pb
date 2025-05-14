@@ -1,0 +1,1 @@
+JR4D:\BridgeLabz\BookStore\ModelLayer\ModelLayer.csproj¢net8.0òCSharp12

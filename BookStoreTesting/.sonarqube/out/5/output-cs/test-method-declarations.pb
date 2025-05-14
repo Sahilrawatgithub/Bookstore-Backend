@@ -1,0 +1,8 @@
+ˆ
+DD:\BridgeLabz\BookStore\BookStoreTesting\Tests\UserControllerTest.csBookStoreTestingW
+)BookStoreTesting.Tests.UserControllerTest*RegisterUserAsync_ReturnsOk_WhenSuccessfulY
+)BookStoreTesting.Tests.UserControllerTest,LoginAsync_ReturnsOk_WhenCredentialsAreValidV
+)BookStoreTesting.Tests.UserControllerTest)GetAllUsersAsync_ReturnsOk_WhenUsersExist]
+)BookStoreTesting.Tests.UserControllerTest0DeleteUserAsync_ReturnsOk_WhenDeletionSuccessfulZ
+)BookStoreTesting.Tests.UserControllerTest-ForgotPasswordAsync_ReturnsOk_WhenEmailIsSentg
+)BookStoreTesting.Tests.UserControllerTest:ResetPasswordAsync_ReturnsOk_WhenPasswordResetIsSuccessful

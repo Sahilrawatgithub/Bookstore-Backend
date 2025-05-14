@@ -1,0 +1,12 @@
+j
+_D:\BridgeLabz\BookStore\BookStore\obj\Debug\net8.0\BookStore.MvcApplicationPartsAssemblyInfo.csutf-8l
+aD:\BridgeLabz\BookStore\BookStore\obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.csutf-8W
+LD:\BridgeLabz\BookStore\BookStore\obj\Debug\net8.0\BookStore.AssemblyInfo.csutf-8Y
+ND:\BridgeLabz\BookStore\BookStore\obj\Debug\net8.0\BookStore.GlobalUsings.g.csutf-85
+,D:\BridgeLabz\BookStore\BookStore\Program.csutf-8L
+CD:\BridgeLabz\BookStore\BookStore\Controllers\WishListController.csutf-8H
+?D:\BridgeLabz\BookStore\BookStore\Controllers\UserController.csutf-8I
+@D:\BridgeLabz\BookStore\BookStore\Controllers\OrderController.csutf-8H
+?D:\BridgeLabz\BookStore\BookStore\Controllers\CartController.csutf-8H
+?D:\BridgeLabz\BookStore\BookStore\Controllers\BookController.csutf-8K
+BD:\BridgeLabz\BookStore\BookStore\Controllers\AddressController.csutf-8

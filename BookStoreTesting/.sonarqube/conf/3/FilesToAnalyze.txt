@@ -1,0 +1,12 @@
+﻿D:\BridgeLabz\BookStore\BusinessLayer\Interface\IAddressBL.cs
+D:\BridgeLabz\BookStore\BusinessLayer\Interface\IBookBL.cs
+D:\BridgeLabz\BookStore\BusinessLayer\Interface\ICartBL.cs
+D:\BridgeLabz\BookStore\BusinessLayer\Interface\IOrderBL.cs
+D:\BridgeLabz\BookStore\BusinessLayer\Interface\IUserBL.cs
+D:\BridgeLabz\BookStore\BusinessLayer\Interface\IWishlistBL.cs
+D:\BridgeLabz\BookStore\BusinessLayer\Service\AddressImplBL.cs
+D:\BridgeLabz\BookStore\BusinessLayer\Service\BookImplBL.cs
+D:\BridgeLabz\BookStore\BusinessLayer\Service\CartImplBL.cs
+D:\BridgeLabz\BookStore\BusinessLayer\Service\OrderImplBL.cs
+D:\BridgeLabz\BookStore\BusinessLayer\Service\UserImplBL.cs
+D:\BridgeLabz\BookStore\BusinessLayer\Service\WishlistImplBL.cs

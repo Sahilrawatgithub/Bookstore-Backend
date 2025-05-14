@@ -1,0 +1,1 @@
+NR8D:\BridgeLabz\BookStore\RepoLayer\RepositoryLayer.csproj¢net8.0òCSharp12

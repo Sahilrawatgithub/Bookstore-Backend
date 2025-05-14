@@ -1,0 +1,1 @@
+VR@D:\BridgeLabz\BookStore\BookStoreTesting\BookStoreTesting.csproj¢net8.0òCSharp12

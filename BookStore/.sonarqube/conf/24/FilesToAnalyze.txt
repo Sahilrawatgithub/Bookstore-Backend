@@ -1,0 +1,7 @@
+﻿D:\BridgeLabz\BookStore\ModelLayer\Entity\AddressEntity.cs
+D:\BridgeLabz\BookStore\ModelLayer\Entity\BookEntity.cs
+D:\BridgeLabz\BookStore\ModelLayer\Entity\CartEntity.cs
+D:\BridgeLabz\BookStore\ModelLayer\Entity\OrderEntity.cs
+D:\BridgeLabz\BookStore\ModelLayer\Entity\UserEntity.cs
+D:\BridgeLabz\BookStore\ModelLayer\Entity\WishListEntity.cs
+D:\BridgeLabz\BookStore\ModelLayer\Enums\AddressType.cs

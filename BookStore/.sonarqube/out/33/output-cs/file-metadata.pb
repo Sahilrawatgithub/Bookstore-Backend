@@ -1,0 +1,16 @@
+_
+TD:\BridgeLabz\BookStore\BusinessLayer\obj\Debug\net8.0\BusinessLayer.AssemblyInfo.csutf-8p
+eD:\BridgeLabz\BookStore\BusinessLayer\obj\Debug\net8.0\.NETCoreApp,Version=v8.0.AssemblyAttributes.csutf-8a
+VD:\BridgeLabz\BookStore\BusinessLayer\obj\Debug\net8.0\BusinessLayer.GlobalUsings.g.csutf-8H
+?D:\BridgeLabz\BookStore\BusinessLayer\Service\WishlistImplBL.csutf-8D
+;D:\BridgeLabz\BookStore\BusinessLayer\Service\UserImplBL.csutf-8E
+<D:\BridgeLabz\BookStore\BusinessLayer\Service\OrderImplBL.csutf-8D
+;D:\BridgeLabz\BookStore\BusinessLayer\Service\CartImplBL.csutf-8D
+;D:\BridgeLabz\BookStore\BusinessLayer\Service\BookImplBL.csutf-8G
+>D:\BridgeLabz\BookStore\BusinessLayer\Service\AddressImplBL.csutf-8G
+>D:\BridgeLabz\BookStore\BusinessLayer\Interface\IWishlistBL.csutf-8C
+:D:\BridgeLabz\BookStore\BusinessLayer\Interface\IUserBL.csutf-8D
+;D:\BridgeLabz\BookStore\BusinessLayer\Interface\IOrderBL.csutf-8C
+:D:\BridgeLabz\BookStore\BusinessLayer\Interface\ICartBL.csutf-8F
+=D:\BridgeLabz\BookStore\BusinessLayer\Interface\IAddressBL.csutf-8C
+:D:\BridgeLabz\BookStore\BusinessLayer\Interface\IBookBL.csutf-8

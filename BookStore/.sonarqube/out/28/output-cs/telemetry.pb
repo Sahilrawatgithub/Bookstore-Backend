@@ -1,0 +1,1 @@
+HR2D:\BridgeLabz\BookStore\BookStore\BookStore.csproj¢net8.0òCSharp12
