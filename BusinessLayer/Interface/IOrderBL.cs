@@ -11,7 +11,7 @@ namespace BusinessLayer.Interface
     public interface IOrderBL
     {
         public Task<ResponseDTO<string>> OrderBookAsync(OrderDTO order, int userId);
-        public Task<ResponseDTO<List<OrderEntity>>> GetAllOrdersAsync(int userId);
+        public Task<ResponseDTO<List<OrderResponseDTO>>> GetAllOrdersAsync(int userId);
 
     }
 }

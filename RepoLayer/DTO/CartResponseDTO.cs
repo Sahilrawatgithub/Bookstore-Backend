@@ -10,10 +10,12 @@ namespace RepositoryLayer.DTO
     {
         public int CartId { get; set; }
         public int BookId { get; set; }
-        public string BookName { get; set; }
-        public string AuthorName { get; set; }
+        public string? BookName { get; set; }
+        public string? AuthorName { get; set; }
         public float PricePerUnit { get; set; }
         public int Quantity { get; set; }
         public float TotalPrice { get; set; }
+        public string? Image { get; set; }
+        public bool isUncarted { get; set; }
     }
 }

@@ -90,13 +90,13 @@ namespace RepositoryLayer.Service
             }
         }
 
-        public async Task<ResponseDTO<LoginResponseDTO>> LoginAsync(string email, string password)
+        public async Task<ResponseDTO<LoginResponseDTO>> LoginAsync(LoginRequestDTO response)
         {
             using var transaction = _userContext.Database.BeginTransaction();
             try
             {
-                _logger.LogInformation("Attempting User Login with email: {Email}", email);
-                var user = await _userContext.Users.FirstOrDefaultAsync(x => x.Email == email);
+                _logger.LogInformation("Attempting User Login with email: {Email}", response.Email);
+                var user = await _userContext.Users.FirstOrDefaultAsync(x => x.Email == response.Email);
                 if (user == null)
                 {
                     return new ResponseDTO<LoginResponseDTO>
@@ -106,17 +106,17 @@ namespace RepositoryLayer.Service
                         Data = null
                     };
                 }
-                var isPasswordValid = await _passwordHasher.VerifyPasswordAsync(password, user.Password);
+                var isPasswordValid = await _passwordHasher.VerifyPasswordAsync(response.Password, user.Password);
                 if (!isPasswordValid)
                 {
-                    _logger.LogWarning("Invalid password attempt for email: {Email}", email);
+                    _logger.LogWarning("Invalid password attempt for email: {Email}", response.Email);
                     return new ResponseDTO<LoginResponseDTO>
                     {
                         Success = false,
                         Message = "Invalid password",
                     };
                 }
-                _logger.LogInformation("User login successful for email: {Email}", email);
+                _logger.LogInformation("User login successful for email: {Email}", response.Email);
                 var token = _authService.GenerateJwtToken(user);
                 await CacheSingleUser(user.UserId);
                 await transaction.CommitAsync();

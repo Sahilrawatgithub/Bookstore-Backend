@@ -55,17 +55,23 @@ namespace RepositoryLayer.Service
                     .FirstOrDefaultAsync(x => x.BookId == addToCartReqDTO.BookId && x.UserId == userId);
                 if (existingEntry != null)
                 {
+                    existingEntry.Quantity += 1;
+                    existingEntry.IsUncarted = false;
+                    _userContext.Cart.Update(existingEntry);
+                    await _userContext.SaveChangesAsync();
+                    await InvalidateCartCache(userId);
+
                     return new ResponseDTO<string>
                     {
-                        Success = false,
-                        Message = "Book already in cart"
+                        Success = true,
+                        Message = "Book quantity increased in cart"
                     };
                 }
                 var newEntry = new CartEntity
                 {
                     UserId = userId,
                     BookId = addToCartReqDTO.BookId,
-                    Quantity = addToCartReqDTO.Quantity
+                    Quantity = 1
                 };
                 await _userContext.Cart.AddAsync(newEntry);
                 await _userContext.SaveChangesAsync();
@@ -101,6 +107,7 @@ namespace RepositoryLayer.Service
                         Message = "Cart is already empty"
                     };
                 }
+                
                 _userContext.Cart.RemoveRange(cartItems);
                 await _userContext.SaveChangesAsync();
                 await InvalidateCartCache(userId);
@@ -219,6 +226,8 @@ namespace RepositoryLayer.Service
                         PricePerUnit = x.Book.Price,
                         Quantity = x.Quantity,
                         TotalPrice = x.Quantity * x.Book.Price,
+                        Image=x.Book.BookImage,
+                        isUncarted=x.IsUncarted
                     })
                     .ToListAsync();
 
@@ -251,7 +260,7 @@ namespace RepositoryLayer.Service
             }
         }
 
-        private async Task InvalidateCartCache(int userId)
+        public async Task InvalidateCartCache(int userId)
         {
             var cacheKey = $"cart:{userId}";
             await _redisDatabase.KeyDeleteAsync(cacheKey);
@@ -274,6 +283,8 @@ namespace RepositoryLayer.Service
                         PricePerUnit = x.Book.Price,
                         Quantity = x.Quantity,
                         TotalPrice = x.Quantity * x.Book.Price,
+                        Image = x.Book.BookImage,
+                        isUncarted = x.IsUncarted
                     })
                     .ToListAsync();
 

@@ -28,7 +28,7 @@ namespace RepositoryLayer.Service
             _logger = logger;
         }
 
-        public async Task<ResponseDTO<string>> UploadBookAsync(AddBookReqDTO request,int userId)
+        public async Task<ResponseDTO<string>> UploadBookAsync(AddBookReqDTO request,int userId, string imageFileName)
         {
             try
             {
@@ -48,12 +48,24 @@ namespace RepositoryLayer.Service
                         Message = "Book added successfully"
                     };
                 }
+
+                var baseUrl = "http://localhost:5177";
+                var imageUrl = $"{baseUrl}/bookstore/images/{imageFileName}";
+                if (string.IsNullOrEmpty(imageFileName))
+                {
+                    _logger.LogWarning("Image file name is empty for book titled '{BookName}'", request.BookName);
+                    return new ResponseDTO<string>
+                    {
+                        Success= false,
+                        Message = "Image file is required"
+                    };
+                }
                 var book = new BookEntity
                 {
                     AuthorID=userId,
                     BookName = request.BookName,
                     AuthorName = request.AuthorName,
-                    BookImage = request.BookImage,
+                    BookImage = imageUrl,
                     Price = request.Price,
                     Description = request.Description,
                     Quantity=request.Quantity

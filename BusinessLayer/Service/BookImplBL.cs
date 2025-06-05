@@ -17,9 +17,9 @@ namespace BusinessLayer.Service
         {
             _bookRL = bookRl;
         }
-        public async Task<ResponseDTO<string>> UploadBookAsync(AddBookReqDTO request,int userId)
+        public async Task<ResponseDTO<string>> UploadBookAsync(AddBookReqDTO request,int userId, string imageFileName)
         {
-            return await _bookRL.UploadBookAsync(request,userId);
+            return await _bookRL.UploadBookAsync(request,userId,imageFileName);
         }
         public async Task<ResponseDTO<BookEntity>> ViewBookByIdAsync(int bookId)
         {

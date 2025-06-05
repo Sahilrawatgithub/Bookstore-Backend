@@ -18,7 +18,7 @@ namespace BusinessLayer.Service
             this.orderRL = orderRL;
         }
 
-        public async Task<ResponseDTO<List<OrderEntity>>> GetAllOrdersAsync(int userId)
+        public async Task<ResponseDTO<List<OrderResponseDTO>>> GetAllOrdersAsync(int userId)
         {
             return await orderRL.GetAllOrdersAsync(userId);
         }

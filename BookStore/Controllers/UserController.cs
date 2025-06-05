@@ -42,11 +42,11 @@ namespace BookStore.Controllers
         }
 
         [HttpPost("Login")]
-        public async Task<IActionResult> LoginAsync(string email, string password)
+        public async Task<IActionResult> LoginAsync(LoginRequestDTO response)
         {
             try
             {
-                var result = await userBL.LoginAsync(email, password);
+                var result = await userBL.LoginAsync(response);
                 if (result.Success)
                 {
                     return Ok(result);

@@ -21,9 +21,9 @@ namespace BusinessLayer.Service
         {
             return await userRl.RegisterUserAsync(request);
         }
-        public async Task<ResponseDTO<LoginResponseDTO>> LoginAsync(string email, string password)
+        public async Task<ResponseDTO<LoginResponseDTO>> LoginAsync(LoginRequestDTO response)
         {
-            return await userRl.LoginAsync(email, password);
+            return await userRl.LoginAsync(response);
         }
         public async Task<ResponseDTO<List<UserEntity>>> GetAllUsersAsync()
         {

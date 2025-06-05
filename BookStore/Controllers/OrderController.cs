@@ -36,6 +36,7 @@ namespace BookStore.Controllers
                 return StatusCode(500, new { message = ex.Message });
             }
         }
+
         [HttpGet("GetAllOrders")]
         public async Task<IActionResult> GetAllOrders()
         {

@@ -11,7 +11,7 @@ namespace BusinessLayer.Interface
     public interface IUserBL
     {
         public Task<ResponseDTO<string>> RegisterUserAsync(RegUserDTO request);
-        public Task<ResponseDTO<LoginResponseDTO>> LoginAsync(string email, string password);
+        public Task<ResponseDTO<LoginResponseDTO>> LoginAsync(LoginRequestDTO response);
 
         public Task<ResponseDTO<List<UserEntity>>> GetAllUsersAsync();
         public Task<ResponseDTO<string>> DeleteUserAsync(string email);

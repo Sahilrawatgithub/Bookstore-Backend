@@ -4,6 +4,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Http;
 
 namespace RepositoryLayer.DTO
 {
@@ -12,7 +13,7 @@ namespace RepositoryLayer.DTO
         [Required]
         public string BookName { get; set; }
         [Required]
-        public string BookImage { get; set; }
+        public IFormFile BookImage { get; set; }
         [Required]
         public string Description { get; set; }
         [Required]
@@ -21,5 +22,6 @@ namespace RepositoryLayer.DTO
         public int Quantity { get; set; }
         [Required]
         public float Price { get; set; }
+
     }
 }

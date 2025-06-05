@@ -21,7 +21,7 @@ namespace BusinessLayer.Service
         {
             return await _wishlistRL.WishlistBookAsync(bookId, userId);
         }
-        public async Task<ResponseDTO<List<WishListEntity>>> GetAllWishlistedBooksAsync(int userId)
+        public async Task<ResponseDTO<List<BookEntity>>> GetAllWishlistedBooksAsync(int userId)
         {
             return await _wishlistRL.GetAllWishlistedBooksAsync(userId);
         }

@@ -59,6 +59,8 @@ namespace RepositoryLayer.Service
                 await _userContext.Addresses.AddAsync(address);
                 await _userContext.SaveChangesAsync();
                 _logger.LogInformation("Address added successfully to the database");
+                await _redisDatabase.KeyDeleteAsync($"Address:{userId}");
+                await CacheAllUserAddresses(userId);
                 return new ResponseDTO<string>
                 {
                     Success = true,
@@ -170,6 +172,7 @@ namespace RepositoryLayer.Service
                 }
                 _userContext.Addresses.Remove(existingAddress);
                 await _userContext.SaveChangesAsync();
+                await _redisDatabase.KeyDeleteAsync($"Address:{userId}");
                 await CacheAllUserAddresses(userId);
                 _logger.LogInformation("Address deleted successfully from the database");
                 return new ResponseDTO<string>
@@ -190,7 +193,7 @@ namespace RepositoryLayer.Service
         }
         private async Task CacheAllUserAddresses(int userId)
         {
-            var Addresses = await _userContext.Addresses.ToListAsync();
+            var Addresses = await _userContext.Addresses.Where(x => x.UserId == userId).ToListAsync();
             string cacheKey = $"Address:{userId}";
             var serializedAddresses = JsonSerializer.Serialize(Addresses);
             await _redisDatabase.StringSetAsync(cacheKey, serializedAddresses, TimeSpan.FromMinutes(10));

@@ -10,7 +10,7 @@ namespace BusinessLayer.Interface
 {
     public interface IBookBL
     {
-        public Task<ResponseDTO<string>> UploadBookAsync(AddBookReqDTO request,int userId);
+        public Task<ResponseDTO<string>> UploadBookAsync(AddBookReqDTO request,int userId, string imageFileName);
 
         public Task<ResponseDTO<BookEntity>> ViewBookByIdAsync(int bookId);
         public Task<ResponseDTO<List<BookEntity>>> GetAllBooksAsync();

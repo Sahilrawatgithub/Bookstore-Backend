@@ -63,6 +63,7 @@ namespace RepositoryLayer.Service
                 }
 
                 book.Quantity -= order.Quantity;
+                
                 var orderEntity = new OrderEntity
                 {
                     BookId = order.BookId,
@@ -70,9 +71,18 @@ namespace RepositoryLayer.Service
                     AddressId = order.AddressId,
                     OrderDate = DateTime.UtcNow
                 };
+
+                var cartItem = _userContext.Cart.FirstOrDefault(c => c.BookId == order.BookId && c.UserId == userId && !c.IsUncarted);
+                if (cartItem != null)
+                {
+                    cartItem.IsUncarted = true;
+                    cartItem.Quantity = 0;
+                }
+
                 await _userContext.Orders.AddAsync(orderEntity);
                 await _userContext.SaveChangesAsync();
                 await InvalidateAllUserOrdersCache(userId);
+                await InvalidateCartCache(userId);
                 return new ResponseDTO<string>
                 {
                     Success = true,
@@ -90,48 +100,66 @@ namespace RepositoryLayer.Service
                 };
             }
         }
-        public async Task<ResponseDTO<List<OrderEntity>>> GetAllOrdersAsync(int userId)
-        {   
+        public async Task<ResponseDTO<List<OrderResponseDTO>>> GetAllOrdersAsync(int userId)
+        {
             try
             {
                 _logger.LogInformation("Attempting to get all orders");
                 string cacheKey = $"orders:{userId}";
+
                 var cachedOrders = await _redisDatabase.StringGetAsync(cacheKey);
                 if (cachedOrders.HasValue)
                 {
-
                     _logger.LogInformation("Orders retrieved from cache");
-                    var orders = JsonSerializer.Deserialize<List<OrderEntity>>(cachedOrders);
+                    var orders = JsonSerializer.Deserialize<List<OrderResponseDTO>>(cachedOrders);
                     if (orders.Count > 0)
                     {
-                        return new ResponseDTO<List<OrderEntity>>
+                        return new ResponseDTO<List<OrderResponseDTO>>
                         {
                             Success = true,
-                            Message = "Orders retrieved successfully",
+                            Message = "Orders retrieved successfully (from cache)",
                             Data = orders
                         };
                     }
                     else
                     {
-                        return new ResponseDTO<List<OrderEntity>>
+                        return new ResponseDTO<List<OrderResponseDTO>>
                         {
                             Success = false,
                             Message = "No orders yet."
                         };
                     }
                 }
-                var ordersFromDb = await _userContext.Orders.Where(x => x.UserId == userId).ToListAsync();
-                if (ordersFromDb.Count>0)
+
+                var ordersFromDb = await _userContext.Orders
+                    .Include(o => o.Book)
+                    .Where(o => o.UserId == userId)
+                    .ToListAsync();
+
+                if (ordersFromDb.Count > 0)
                 {
-                    await CacheAllUserOrders(userId);
-                    return new ResponseDTO<List<OrderEntity>>
+                    var orderDTOs = ordersFromDb.Select(o => new OrderResponseDTO
+                    {
+                        OrderId = o.OrderId,
+                        OrderDate = o.OrderDate,
+                        BookName = o.Book.BookName,
+                        AuthorName = o.Book.AuthorName,
+                        BookImage = o.Book.BookImage,
+                        Price = o.Book.Price,
+                    }).ToList();
+
+                    var serializedData = JsonSerializer.Serialize(orderDTOs);
+                    await _redisDatabase.StringSetAsync(cacheKey, serializedData, TimeSpan.FromMinutes(30));
+
+                    return new ResponseDTO<List<OrderResponseDTO>>
                     {
                         Success = true,
                         Message = "Orders retrieved successfully",
-                        Data = ordersFromDb
+                        Data = orderDTOs
                     };
                 }
-                return new ResponseDTO<List<OrderEntity>>
+
+                return new ResponseDTO<List<OrderResponseDTO>>
                 {
                     Success = false,
                     Message = "No orders found"
@@ -140,32 +168,39 @@ namespace RepositoryLayer.Service
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error occurred while retrieving all orders");
-                return new ResponseDTO<List<OrderEntity>>
+                return new ResponseDTO<List<OrderResponseDTO>>
                 {
                     Success = false,
                     Message = ex.Message
                 };
             }
         }
-        private async Task CacheAllUserOrders(int orderId)
+
+
+        public async Task InvalidateCartCache(int userId)
         {
-            try
-            {
-                _logger.LogInformation("Attempting to cache all user orders");
-                string cacheKey = $"orders:{orderId}";
-                var orders = await _userContext.Orders.Where(x => x.OrderId == orderId).ToListAsync();
-                if (orders != null && orders.Any())
-                {
-                    var serializedOrders = JsonSerializer.Serialize(orders);
-                    await _redisDatabase.StringSetAsync(cacheKey, serializedOrders, TimeSpan.FromMinutes(10));
-                    _logger.LogInformation("User orders cached successfully");
-                }
-            }
-            catch (Exception ex)
-            {
-                _logger.LogError(ex, "Error occurred while caching user orders");
-            }
+            var cacheKey = $"cart:{userId}";
+            await _redisDatabase.KeyDeleteAsync(cacheKey);
         }
+        private async Task CacheAllUserOrders(int userId)
+{
+    try
+    {
+        _logger.LogInformation("Attempting to cache all user orders");
+        string cacheKey = $"orders:{userId}";
+        var orders = await _userContext.Orders.Where(x => x.UserId == userId).ToListAsync();
+        if (orders != null && orders.Any())
+        {
+            var serializedOrders = JsonSerializer.Serialize(orders);
+            await _redisDatabase.StringSetAsync(cacheKey, serializedOrders, TimeSpan.FromMinutes(10));
+            _logger.LogInformation("User orders cached successfully");
+        }
+    }
+    catch (Exception ex)
+    {
+        _logger.LogError(ex, "Error occurred while caching user orders");
+    }
+}
          
         private async Task InvalidateAllUserOrdersCache(int userId)
         {

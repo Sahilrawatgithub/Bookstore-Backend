@@ -15,6 +15,7 @@ using Microsoft.OpenApi.Models;
 using NLog.Web;
 using Microsoft.Extensions.Logging;
 using ConsumerLayer;
+using Microsoft.Extensions.FileProviders;
 
 namespace BookStore
 {
@@ -140,7 +141,23 @@ namespace BookStore
                         });
                 });
 
+
+
                 var app = builder.Build();
+
+                app.UseStaticFiles();
+                var imageDirectory = Path.Combine(Directory.GetCurrentDirectory(), "bookstore/images");
+                if (!Directory.Exists(imageDirectory))
+                {
+                    Directory.CreateDirectory(imageDirectory);
+                }
+                app.UseStaticFiles(new StaticFileOptions
+                {
+                    FileProvider = new PhysicalFileProvider(
+        Path.Combine(Directory.GetCurrentDirectory(), "bookstore/images")),
+                    RequestPath = "/bookstore/images"
+                });
+
 
                 // Configure the HTTP request pipeline.
                 if (app.Environment.IsDevelopment())

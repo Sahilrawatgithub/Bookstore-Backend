@@ -83,17 +83,18 @@ namespace RepositoryLayer.Service
             }
         }
 
-        public async Task<ResponseDTO<List<WishListEntity>>> GetAllWishlistedBooksAsync(int userId)
+        public async Task<ResponseDTO<List<BookEntity>>> GetAllWishlistedBooksAsync(int userId)
         {
             try
             {
-                _logger.LogInformation("Attempting to get all wishlisted books");
+                _logger.LogInformation("Attempting to get all wishlisted books for user {UserId}", userId);
                 string cacheKey = $"wishlist:{userId}";
                 var cachedData = await _redisDatabase.StringGetAsync(cacheKey);
+
                 if (cachedData.HasValue)
                 {
-                    var books = JsonSerializer.Deserialize<List<WishListEntity>>(cachedData);
-                    return new ResponseDTO<List<WishListEntity>>
+                    var books = JsonSerializer.Deserialize<List<BookEntity>>(cachedData);
+                    return new ResponseDTO<List<BookEntity>>
                     {
                         Success = true,
                         Data = books
@@ -101,11 +102,20 @@ namespace RepositoryLayer.Service
                 }
                 else
                 {
-                    var books = await _userContext.WishList.Where(x => x.UserId == userId).ToListAsync();
-                    if (books.Count > 0)
+                    var bookIds = await _userContext.WishList
+                        .Where(x => x.UserId == userId)
+                        .Select(x => x.BookId)
+                        .ToListAsync();
+
+                    if (bookIds.Count > 0)
                     {
+                        var books = await _userContext.Books
+                            .Where(b => bookIds.Contains(b.BookId))
+                            .ToListAsync();
+
                         await CacheAllWishlistedBooks(userId);
-                        return new ResponseDTO<List<WishListEntity>>
+
+                        return new ResponseDTO<List<BookEntity>>
                         {
                             Success = true,
                             Data = books
@@ -113,7 +123,7 @@ namespace RepositoryLayer.Service
                     }
                     else
                     {
-                        return new ResponseDTO<List<WishListEntity>>
+                        return new ResponseDTO<List<BookEntity>>
                         {
                             Success = false,
                             Message = "No books found in wishlist"
@@ -124,7 +134,7 @@ namespace RepositoryLayer.Service
             catch (Exception ex)
             {
                 _logger.LogError(ex, "Error occurred while getting wishlisted books");
-                return new ResponseDTO<List<WishListEntity>>
+                return new ResponseDTO<List<BookEntity>>
                 {
                     Success = false,
                     Message = "Error occurred while getting wishlisted books"
@@ -206,12 +216,21 @@ namespace RepositoryLayer.Service
             {
                 _logger.LogInformation("Attempting to cache all user Wishlisted Books");
                 string cacheKey = $"wishlist:{userId}";
-                var books = await _userContext.WishList.Where(x => x.UserId == userId).ToListAsync();
+
+                var bookIds = await _userContext.WishList
+                    .Where(x => x.UserId == userId)
+                    .Select(x => x.BookId)
+                    .ToListAsync();
+
+                var books = await _userContext.Books
+                    .Where(b => bookIds.Contains(b.BookId))
+                    .ToListAsync();
+
                 if (books.Count > 0)
                 {
-                    var serializedOrders = JsonSerializer.Serialize(books);
-                    await _redisDatabase.StringSetAsync(cacheKey, serializedOrders, TimeSpan.FromMinutes(10));
-                    _logger.LogInformation("cached successfully");
+                    var serializedBooks = JsonSerializer.Serialize(books);
+                    await _redisDatabase.StringSetAsync(cacheKey, serializedBooks, TimeSpan.FromMinutes(10));
+                    _logger.LogInformation("Wishlist books cached successfully");
                 }
                 else
                 {
